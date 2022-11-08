@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+	<head>
+		<title>New Document</title>
+
+		<meta name="Generator" content="EditPlus" />
+
+		<meta name="Author" content="" />
+
+		<meta name="Keywords" content="" />
+
+		<meta name="Description" content="" />
+
+		<style>
+			html,
+			body {
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				background: #000;
+				cursor: none;
+			}
+
+			canvas {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				/* transform: translate(-50%, -50%); */
+			}
+			.container-img {
+				position: fixed;
+				inset: 0;
+				z-index: 100;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				opacity: 0;
+			}
+			.container-img .image {
+				position: relative;
+				width: 250px;
+				height: 170px;
+				transform-style: preserve-3d;
+				-webkit-transform-style: preserve-3d;
+				transform-origin: center;
+				/* transform: rotateX(-6deg); */
+
+				animation: animate 40s linear infinite;
+			}
+			@keyframes animate {
+				0% {
+					transform: perspective(800px) rotateY(0deg);
+				}
+				100% {
+					transform: perspective(800px) rotateY(360deg);
+				}
+			}
+			.image span {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				transform-origin: center;
+				transform-style: preserve-3d;
+				-webkit-transform-style: preserve-3d;
+				transform: rotateY(calc(var(--i) * 45deg)) translateZ(350px);
+				/* overflow: hidden; */
+				transition: all 0.2s ease;
+			}
+
+			span img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				border-radius: 15px;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: all 0.8s ease-in-out;
+				filter: brightness(0.6);
+			}
+			.image span:hover img {
+				transform: translateY(-30px) scale(1.1);
+				filter: brightness(1.2);
+			}
+			.custom-cursor {
+				position: absolute;
+				z-index: 1000;
+				width: 50px;
+				height: 50px;
+				background-color: #a31b7a;
+				box-shadow: -10px 10px 90px #a31b7a;
+				transform: rotate(-45deg);
+                pointer-events: none;
+                /* opacity: 0.5; */
+			}
+			.custom-cursor::before {
+				content: "";
+				position: absolute;
+				height: 50px;
+				width: 50px;
+				background-color: inherit;
+				top: -50%;
+				transform: rotate(-45deg);
+				box-shadow: -10px 10px 90px #a31b7a;
+				border-radius: 50px;
+                pointer-events: none;
+
+			}
+			.custom-cursor::after {
+				content: "";
+				position: absolute;
+				height: 50px;
+				width: 50px;
+				background-color: inherit;
+				top: -50%;
+				transform: rotate(45deg) translateX(35px);
+				box-shadow: -10px 10px 90px #a31b7a;
+				border-radius: 50px;
+                pointer-events: none;
+
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="custom-cursor"></div>
+		<div class="container-img">
+			<div class="image">
+				<span style="--i: 1"><img src="./img/1.jpg" /></span>
+				<span style="--i: 2"><img src="./img/2.jpg" /></span>
+				<span style="--i: 3"><img src="./img/3.jpg" /></span>
+				<span style="--i: 4"><img src="./img/4.jpg" /></span>
+				<span style="--i: 5"><img src="./img/5.jpg" /></span>
+				<span style="--i: 6"><img src="./img/6.jpg" /></span>
+				<span style="--i: 7"><img src="./img/7.jpg" /></span>
+				<span style="--i: 8"><img src="./img/8.jpg" /></span>
+			</div>
+		</div>
+		<canvas id="pinkboard"> </canvas>
+		<script src="./script.js"></script>
+	</body>
+</html>
